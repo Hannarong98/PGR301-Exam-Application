@@ -1,4 +1,32 @@
 language: java
-
+env:
+  global:
+  - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+  - secure: lCntKp43Zd1WLoSadvwXW/vNv2WqK/jIiQWywF0s0k77/z6ALs2f02bDgjQ41HlfLV8XS/+Qb5ajos0+gceCXAROQr6a+hBqM7+VZiLGN0Mrock3HRMlsscN244x8QyLN4Rw666LttcyLXjiDN/oId/98xq762fgLEzrr/oHj97wPcQwpuWc9zCb17RarO/Xy0y2+KcVN5AufpfmAmM1R8gqzJh8gBAid7+CtHSwklrH0Bjx1msiUWoqaIER7Ggoo7GVOEKX+nHomO/fUQO8XFxc/1EDVC5boXEjcJLnFJNY13hnMNYq2lNBzooxTdh8kwqRXNPxKXkuCSgOwvVx4/txhXvyBEga3VCgk3V6v/2Ppg4PVkruoluOjrI0zfqrJ1D8pAjNPDEJIZkhNfKQMxnawj/BGBpsOnSNVNc8KpfLP4GiQmwDeiy4wtHn2USEtd5J7m7W5WWEMTjD8Rx8ctEa9yYWHPl2/Ds5UTH1dg2HOMZwEqVleDzeu3q9vtSXrwf3BhmQkIDHDJDXX6UJRYZYAKyOlP87b1E02hT5XhDOFim49473baU/xSFq6xiEKMZGh6TZYYd+Q2P8rYmu+sPz3u2Q12+wupyodHFn2G8zdboKAd8mMA8UUfHdLdfDyLQeyUjQu9tO0I3fpO9ZVYg+MAZIUwYl94hl5CCiy/4=
+  - secure: PEIu66GjxUuwsT/zWlsk/8P2iDrvPAD/2mKE8Kfz+YfE4vZXnKjq6eG3nMqs0cmMXOHE9tUs+H/VcC14aZhp050KL/P2W/xsr4KjZsEGUImyx1I+Hc8Ha5H0bfCHZaEun4j3xmokwS7ZQvF7GdB7txb9QECdX/zvHwJf67+NcyznPtO/n7bK0w9SqPe3NH036ucWFD4l8D4n/JTjuVjnRFqHXXWOfnHK6AePrAFPmu3vU1nDXI00k7zFmRpWam2bveJVZ8b7cvKQnqE/8JIMeGehujuWqJE6hf3tq85+2EiF2Ee4i6ZXkBucToHic2WEfgR0DOq8TRRPhIN5S3pk6lq+aAQnnqDUhlq1W0DvE0CkDkHEapDzWWEd8wzFc5eJmvGZuOyEWe8iyOM9JOCJ2RK2uHFK795pi73ASatrLXRccGjtyy5CXECeMYhiXOfUosSyrqZuz51JrCuhnEUojTTARqjtO9V7/PksyQbLWXFnecpV8R1hceE5D9x+AW1hCy2enDjuyEjvu3iHgr18LdokKFcIwF+cHAf4ECHjfbARjLvRY6DJmAqvNIwy+HER4FaOH/uGej44Cps7uvETeg224Ip9RJZvobtEUx4K3k7+f6hFQsXty6e8ADPGZYyPCRCtzElHKsXc+FP3MrDZNNHTKTpUagyjoCc7Y42NLK8=
+  - secure: erHvilOXBjYWf8iVLLBisjwJ96Rv85+sDugwUHqNL4nCsEzCVA5/lB4fCdjw6i/yUNiTqdSdf9T0FGLx6HckwUVLy5evwq8MMXE7G6Q2tdmHjMTeCjZ/VSbwTXy9Jo/CmhJ1/cUfK5ZOtowwGhYs1P4ZsHvq5kbDdk+eOau8o/2u9OIC6mx8K78VGcKXF3bBWXjYEsi3UwW4Of5EF0kokrtxKCBnE8XYbyIoIHZPCVttYcYAgKNElA8ahwoFDYClRlT7YelC3VoieooZqnouh12UcQZkCDTGsUDO8Hsi1SkaBQ5dIBawAJ/aImbGy06Wc8RIhsvzSCeC3BLCy6uI/Hb+6HOh4ay/VfjHNPr0XHLDtpD/6kgd4rdfhAmHg5wKgMenIikfQB9Ak18Wau0OA/w5iaFv4qvYb9AkrHAtrBKp8zZMJzDcsrszHkBtywkmLrfn9KkYIJ2Bw3hiTQDfXCw2JTwMdL+fsfWaT0cpwPfife/GLoI29fIsrl+0W0kThkVgg9D1ezZ/yPbAY01blxHRctZS5QdYO+g6pOTXtBkuGvX75v2BlGtpLVW2JdijZQUztlhtH+OOiYzarISujCaGuecvI9zdfsm5B1ox8fIZ1wCorrj86N29w/wy/83/nA1N75dhqSXDYc6R+2nnSHbLxIJ8DPdY0b2F67QC0Rc=
+  - secure: IBBMrZ2iHv6HvbmhgQtOAlb4AbYAGuORY7VNXGHeuIutKgpjhQT9FVcU/Eix+OmGNm+FjZvvtKP43Um7IbgimiVL7pVsWCPNgT5kTZcSLq4c5XKZm5axGp+B+VUG+DXnU3eqNUHJ5uG4pSTHim3Ew+VljguuA2WurBhuHYlKPCpWmQ8lhv4odyk2W+8+DB28SI3g1ky6s7ElFiezpMTE4Yqzy6HkchU0Nej8tTYmcQgibGmq/hVBjSEBVOfSf0izkTQTe6BzDtxTCyaAiEgot6jbcLR9YVidk3qkaHOlr9Z1iZE2j7Q4TDHwzAnqzX41yxUUBJtVatIJFgqMFZy+OURyVrEaL2w54ufWoM/f50dGm8jrOz47VkQ1sN7ACMbMvXCDx5XLVmdwylYdV5zsnpRZ3hY29Fu9VAzm6JNAbdZre5I/+NX7eTPV+GmhHjsIdap4o7kC+gNEKpQ2cuh0bc5l8QHLWRKbiwYnzk4002QAoNrDcysRYUfP2ZYiZDGxEARpUiCw/U18egUS7GEocpHB+sdrDYrfgpif0dk2a6waPXPGz2krrJLDT62wmIInxle4hgO6m+4RQgqDh2nbzWaEuo8vpmyx5GIPhob1xH2/oNaeDldrXYFIpHh5xIA0+is6Sr+UbTTcfbT0WNUIYMHV3rBkCwe6Hh39K6j5h6k=
 jdk:
-  - openjdk11
+- openjdk11
+before_install:
+- openssl aes-256-cbc -K $encrypted_98d237b7dbf4_key -iv $encrypted_98d237b7dbf4_iv
+  -in google-key.json.enc -out google-key.json -d
+- curl https://sdk.cloud.google.com | bash > /dev/null
+- source "$HOME/google-cloud-sdk/path.bash.inc"
+- gcloud auth activate-service-account --key-file=google-key.json
+- gcloud auth configure-docker
+- gcloud config set project "${GCP_PROJECT_ID}"
+- gcloud components install beta
+- export GOOGLE_APPLICATION_CREDENTIALS=./google-key.json
+install: true
+script:
+- |
+  set -ex;
+  docker build -t "${IMAGE}:${TRAVIS_COMMIT}" . && \
+  docker push "${IMAGE}:${TRAVIS_COMMIT}" && \
+  gcloud beta run deploy "${CLOUD_RUN_SERVICE}" \
+    --image="${IMAGE}:${TRAVIS_COMMIT}" \
+    --platform=managed \
+    --region="${CLOUD_RUN_REGION}" \
+    --allow-unauthenticated;
+  set +x
