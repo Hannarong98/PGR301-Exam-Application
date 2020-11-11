@@ -1,9 +1,11 @@
 language: java
-
 env:
   global:
-    - CLOUDSDK_CORE_DISABLE_PROMPTS=1
-    - secure: cG002e4G6TAuYZ2xSL0Vmz5vvxCir8mUO5jroDBVK424jQiH0DBgSYoLuJyT2dZLDef8w2xIBRDH+KBgiJEi5A8n4iuBi1gUGIbOC2SlsjvDkd8/OrBoPZMN88bKeyyW40uxDaidY7Ln25XFDShzesc2pk37pBgOV+rK3Rgv9JTRth1p61xk/toBSkS9LCV0K8/P+i1qam41eCO2pZloxyPdL57Yn9zyHzT1OGt3y6CGZUInVeCGDiILbjLgUK4lSPYSjfAASaaLa/6FRa5Zrn12/ViBz9o9yn9CbnU+hnYDEPOdBVFYPUdPVaSvcTQs8K7/jOomHdaHHIBjCtZOfvUpAp040ecY9B/VJyFxKdDW+G8SuOhbR7fGbqIHPUAS6y11AgMDfse3ZkN2V6C8ym0c7gqzj0rAEKJ+xajmTUjNdmbO/EMDumdxMwOBmVJ1Vch4u/MP7EJ0Yv6IyfYga6ulHxzjQSDffjtIHEiwgh8utoIEnoQ5JH76hu/HcwsuBm8StcKdEcXACvZdg0WDY6OphXo5nxOUNUbhTx8is6MKXpGpj3v76Ld3E9KJNi8nhoxWb0I2Xf7EH5ZRaoPggcbZa7MmdJKNtQ8A8i+9L94Qg8Lj5ujUKrADgipEP/n1rSN0zWfeIvZ0J4SU2XS/oXnjy7oJGwaLStmkd+Pc4AU=
+  - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+  - secure: cG002e4G6TAuYZ2xSL0Vmz5vvxCir8mUO5jroDBVK424jQiH0DBgSYoLuJyT2dZLDef8w2xIBRDH+KBgiJEi5A8n4iuBi1gUGIbOC2SlsjvDkd8/OrBoPZMN88bKeyyW40uxDaidY7Ln25XFDShzesc2pk37pBgOV+rK3Rgv9JTRth1p61xk/toBSkS9LCV0K8/P+i1qam41eCO2pZloxyPdL57Yn9zyHzT1OGt3y6CGZUInVeCGDiILbjLgUK4lSPYSjfAASaaLa/6FRa5Zrn12/ViBz9o9yn9CbnU+hnYDEPOdBVFYPUdPVaSvcTQs8K7/jOomHdaHHIBjCtZOfvUpAp040ecY9B/VJyFxKdDW+G8SuOhbR7fGbqIHPUAS6y11AgMDfse3ZkN2V6C8ym0c7gqzj0rAEKJ+xajmTUjNdmbO/EMDumdxMwOBmVJ1Vch4u/MP7EJ0Yv6IyfYga6ulHxzjQSDffjtIHEiwgh8utoIEnoQ5JH76hu/HcwsuBm8StcKdEcXACvZdg0WDY6OphXo5nxOUNUbhTx8is6MKXpGpj3v76Ld3E9KJNi8nhoxWb0I2Xf7EH5ZRaoPggcbZa7MmdJKNtQ8A8i+9L94Qg8Lj5ujUKrADgipEP/n1rSN0zWfeIvZ0J4SU2XS/oXnjy7oJGwaLStmkd+Pc4AU=
+  - secure: VDAyafjpSDzEt6Y4lvITtvABw8lUM71ewD0DxClUoyJSAJTLr31TmiDZuiV0n+5mFMFzXkaATlNr5JGy+UFa5N2O5mXdU1LFis4v9XN9CS3ptK2x20oSGTzECfKJs61XTDxiA2qZBJxF5JpNgHqS+difzzZeQ9RORszpWeXbIaUwoQ+AVftz3Poae+id07Jel+jMDqsYp3CEFkFQwrLFdumNmgomOcngkrYX3YufbKeoHZPP2i2dqYpqSkXZ9uo0+o3N844hgCL4rbnVNSQB4UuQHTc8DNwSzmIFJxQgbWhG8lptZ7AXSy0PdepE+JM01+DHek5EhVd2480eIRfPnCAWXHAKSQV7DlJ0oI41nl/V57tHFZrJbNPxi1NjLBqk6AgM6wsXW5tX735oplETvTvw5YwUP2k4D4eoCmhZG5/TYGOyuTvjJScDXKknntI74h4U0uFUohPd2r1IFJ2StNyU+Avh8KSkG7PUYvLzJvYBFVjiSpEx/YNRsSFPC9AJSqPZMGQVF9JA8WyJtW/eLNxEo5gxofnUxYct/61iCGw9oWezI3oWI+9lGM8I8kxKyjnAMVXx20Pg64cbt04BwbE7TDiMYzJCWJVTIMj3T68Pprc81QeVMFemd73wfrLnSf/e06Fx2tLM+FGpvwKDJ600mcNYaesy9cSrh5aPxhI=
+  - secure: hJjOr/NCkFiYPXdupKWBDxnacERnQxMe/H6z1E72DUA6lHV+vS0GJt+92godBst1vf8e4XjuvZwWLo/jQw9v7nqi7k+oNb+SCIUzPEim6QaqUfxmwfasE4Q8UYBKI6pfpIbdcaZGCvvp/PGwa1pqVC0/0jbYnxR6iq5mCf+fgahX7dm9KgF66VdzSrzjKmcyJTpXxU88x0ACZdbUlSXLoNisTw+RqTBQuo7BXet0iDO82tijrM6D8O1CuPK6qDSnSdNxniE2/egOEBOUzAXOETHvUghDDsynGHVfHS1PlXc+shvG2RSiHO0kORO4hY4fyCFoXoqRz1/AerfkGH+KbZVNLwMl0O9u1Ns7smHtypT7uT1bQYeT8kMhlldz0EsrgS/H4GvSvlZdF3KxfJ4YeS9F61GfZS2aJA2lFJ04Y3K/ON1No67X5LtDUUfvjYiBE6xaKeFrHUouk5rgLsOKDtNd34Vb7P96qxAMjaktNZUAzBwsx+wCxc7l7Jr7EDqta3nT3V1K5TO3nsZ2hTF11XAkLcd/Rf6YD11pRl0WTm2BKOl7WPUkotbl7zSql6z8mLTaASUwO/eepHzRJfwbT1e1gOCvFh/vKMruh0eOnJNEDvvYfFFdzugDyzbZF1Ml8T5q8BVXpF2nYX41T2Nbaoj24lvHxpYDKjPc5veIX58=
+  - secure: v5rEr9sjZp5aRtypD0sPPmMv2k6CCf9TtVyWF1YvWoCoJp6JTHylRwf9vO3L4oaOCxPXH+SrAuKVnTQj1iu0Uuj1qpQi21U3Uelyunnxx69WEV3rfoX/md+S8Tf+KlO+xtfq24m6a3sdiG8OjRPY6Hk2Gg4gY2fw4Z3VzWr2MvLE+THBaDgru1nQybg9A/F8j+mOSsdZh/O+mZe2qzr1Gr6SDNNOcOru3Y6CrZ9s+ssbtqHuCRRiRb40yDxo3E/lu7dgoM75iMmkRHhuH0wmE+jNeMP1rAkXjaoXI+cUo17wr8iXMLxhHYI3/oU6aME/82Cyt/5EySyEVQ7Mf+pwsWujYOjJDGqYU4aGWNaiM/E20uZmVTh4MwvPVSTVUDjwPdyJOzvDmWoXeMF9dzAcppMbCBWtrUMACWmKKcmqJ0xiYgmMwHgDSRWRf6XGLq5bQcEOMJwUUq1LOxtWp5Dc3siA4OqUQsBIBmR4yMcRQrMk6FUXX1gBuPujj8gLWMcJmvrZ+WayIM0Se5NhIc/CH4vxOmZP0DkCPSB8HkzA9EDVuXWginuQNR0qVBhL+sB1zgtEZYAXn/01zDrMHJKvNtAugOTLQ7AQI5hasUx4lrnuxYqVD+4PYUDw/07ckObV6IscyyA7v1YK4PGasIrXZ7v8cO3BMegdxpnrgv+x9us=
 jdk:
 - openjdk11
 before_install:
@@ -16,17 +18,15 @@ before_install:
 - gcloud config set project "${GCP_PROJECT_ID}"
 - gcloud components install beta
 - export GOOGLE_APPLICATION_CREDENTIALS=./google-key.json
-
-
 install: true
 script:
-  - |
-    set -ex;
-    docker build -t "${IMAGE}:${TRAVIS_COMMIT}" . && \
-    docker push "${IMAGE}:${TRAVIS_COMMIT}" && \
-    gcloud beta run deploy "${CLOUD_RUN_SERVICE}" \
-      --image="${IMAGE}:${TRAVIS_COMMIT}" \
-      --platform=managed \
-      --region="${CLOUD_RUN_REGION}" \
-      --allow-unauthenticated;
-    set +x
+- |
+  set -ex;
+  docker build -t "${IMAGE}:${TRAVIS_COMMIT}" . && \
+  docker push "${IMAGE}:${TRAVIS_COMMIT}" && \
+  gcloud beta run deploy "${CLOUD_RUN_SERVICE}" \
+    --image="${IMAGE}:${TRAVIS_COMMIT}" \
+    --platform=managed \
+    --region="${CLOUD_RUN_REGION}" \
+    --allow-unauthenticated;
+  set +x
