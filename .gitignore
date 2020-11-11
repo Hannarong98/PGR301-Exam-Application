@@ -34,7 +34,7 @@ build/
 
 ### Others ###'
 **/target/
-service-account.json
+google-key.json
 .terraform/
 *.tfstate
 *.tfstate.backup
