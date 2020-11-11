@@ -5,5 +5,5 @@ COPY src ./src
 RUN mvn package
 
 FROM adoptopenjdk/openjdk11:alpine
-COPY --from=builder /app/target/*.jar /app/pgr301-exam.jar
-ENTRYPOINT ["java","-jar","/app/pgr301-exam.jar"]
+COPY --from=builder /app/target/*.jar /app/application.jar
+ENTRYPOINT ["java","-jar","/app/application.jar"]
