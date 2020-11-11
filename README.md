@@ -11,7 +11,7 @@
     
 * If it's a file you wish to encrypt do 
     * `travis encrypt-file --pro your-secret-file.json`
-    * You will most likely get an openssl command.
+    * You will most likely get an openssl command as a result.
     * Edit the `.travis.yml` file and add the aforementioned result after `before_install:`
     * This will also add `your-secret-file.json.enc` file which you can safely push to your repository
     * Do `NOT` to push the `your-secret-file.json` un-encrypted file to the repository
