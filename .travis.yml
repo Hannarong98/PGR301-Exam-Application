@@ -21,8 +21,4 @@ before_install:
 install: true
 
 after_success:
-  - |
-    set -ex;
-    docker build -t "${IMAGE}:${TRAVIS_COMMIT}" . && \
-    docker push "${IMAGE}:${TRAVIS_COMMIT}"
-    set +x
+  - ./scripts/pushToRegistry.sh
