@@ -1,4 +1,4 @@
-package no.kristiania.pgr301.exam.db
+package no.kristiania.pgr301.exam.entity
 
 import javax.persistence.*
 import javax.validation.constraints.NotNull
@@ -20,5 +20,5 @@ data class Student(
 
         @get:Id
         @get:NotNull
-        var id: String? = null
+        var studentId: String? = null
 )

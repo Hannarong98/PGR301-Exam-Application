@@ -3,6 +3,9 @@ package no.kristiania.pgr301.exam
 import io.restassured.RestAssured
 import io.restassured.RestAssured.given
 import io.restassured.http.ContentType
+import no.kristiania.pgr301.exam.repository.CourseRepository
+import no.kristiania.pgr301.exam.repository.ExamResultRepository
+import no.kristiania.pgr301.exam.repository.StudentRepository
 import no.kristiania.pgr301.exam.service.CourseService
 import no.kristiania.pgr301.exam.service.StudentService
 import no.kristiania.pgr301.exam.service.UserService
@@ -22,7 +25,7 @@ import javax.annotation.PostConstruct
 @ExtendWith(SpringExtension::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Profile("test")
-class RestApiTest{
+class StudentRestApiTest{
 
     @LocalServerPort
     protected var port = 0
@@ -36,8 +39,9 @@ class RestApiTest{
     @Autowired
     protected lateinit var courseService: CourseService
 
+
     @Autowired
-    protected lateinit var 
+    protected lateinit var examResultRepository: ExamResultRepository
 
     @PostConstruct
     fun init(){
@@ -48,7 +52,15 @@ class RestApiTest{
 
     @BeforeEach
     fun cleanUp(){
+        examResultRepository.deleteAll()
+        studentService.deleteAll()
+        userService.deleteAll()
+        courseService.deleteAll()
+    }
 
+    @Test
+    fun shouldCreateCourse() {
+        given().post()
     }
 
 

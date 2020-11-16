@@ -1,4 +1,4 @@
-package no.kristiania.pgr301.exam.db
+package no.kristiania.pgr301.exam.entity
 
 import no.kristiania.pgr301.exam.dto.Grade
 import javax.persistence.Entity
@@ -21,9 +21,6 @@ data class ExamResult (
 
         @get:NotBlank
         var courseName: String? = null,
-
-        @get:NotNull
-        var courseId: Long? = null,
 
         @get:NotNull
         var grade: Grade? = null,

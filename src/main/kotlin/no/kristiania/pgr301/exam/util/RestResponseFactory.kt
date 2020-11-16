@@ -1,4 +1,4 @@
-package no.kristiania.cardgame.utils
+package no.kristiania.pgr301.exam.util
 
 import org.springframework.http.ResponseEntity
 import java.net.URI

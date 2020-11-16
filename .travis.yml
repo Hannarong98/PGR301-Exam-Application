@@ -23,10 +23,5 @@ script:
 - |
   set -ex;
   docker build -t "${IMAGE}:${TRAVIS_COMMIT}" . && \
-  docker push "${IMAGE}:${TRAVIS_COMMIT}" && \
-  gcloud beta run deploy "${CLOUD_RUN_SERVICE}" \
-    --image="${IMAGE}:${TRAVIS_COMMIT}" \
-    --platform=managed \
-    --region="${CLOUD_RUN_REGION}" \
-    --allow-unauthenticated;
+  docker push "${IMAGE}:${TRAVIS_COMMIT}"
   set +x

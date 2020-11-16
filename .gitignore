@@ -35,6 +35,7 @@ build/
 ### Others ###'
 **/target/
 google-key.json
+*.conf
 .terraform/
 *.tfstate
 *.tfstate.backup
