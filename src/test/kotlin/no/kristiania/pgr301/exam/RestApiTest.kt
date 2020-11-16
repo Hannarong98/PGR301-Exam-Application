@@ -139,6 +139,7 @@ class RestApiTest{
     }
 
 
+    /*
     @Test
     fun intentionalFailure(){
 
@@ -155,7 +156,7 @@ class RestApiTest{
                 .post("/students/signup")
                 .then()
                 .statusCode(201)
-    }
+    } */
 
 
 }
