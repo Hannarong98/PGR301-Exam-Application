@@ -1,6 +1,6 @@
 ## PGR301 Exam Autumn 2020
 
-[![Build Status](https://travis-ci.com/Hannarong98/PGR301-Eksamen-applikasjon.svg?token=DqMpxq41VWvgzW8Fy3oq&branch=master)](https://travis-ci.com/Hannarong98/PGR301-Eksamen-applikasjon)
+[![Build Status](https://travis-ci.com/Hannarong98/PGR301-Exam-application.svg?token=DqMpxq41VWvgzW8Fy3oq&branch=master)](https://travis-ci.com/Hannarong98/PGR301-Exam-application)
 
 ## How to add secrets to travis
 
