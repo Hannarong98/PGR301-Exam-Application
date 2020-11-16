@@ -3,6 +3,7 @@ package no.kristiania.pgr301.exam
 import io.restassured.RestAssured
 import io.restassured.RestAssured.given
 import io.restassured.http.ContentType
+import no.kristiania.pgr301.exam.dto.CourseDto
 import no.kristiania.pgr301.exam.repository.CourseRepository
 import no.kristiania.pgr301.exam.repository.ExamResultRepository
 import no.kristiania.pgr301.exam.repository.StudentRepository
@@ -46,6 +47,7 @@ class StudentRestApiTest{
     @PostConstruct
     fun init(){
         RestAssured.baseURI = "http://localhost"
+        RestAssured.basePath = "/api"
         RestAssured.port = port
         RestAssured.enableLoggingOfRequestAndResponseIfValidationFails()
     }
@@ -60,7 +62,20 @@ class StudentRestApiTest{
 
     @Test
     fun shouldCreateCourse() {
-        given().post()
+
+        val dto = CourseDto("T01", "TEST1")
+
+        given().contentType(ContentType.JSON)
+                .body(dto)
+                .post("/courses")
+                .then()
+                .statusCode(201)
+
+        given().get("/courses")
+                .then()
+                .statusCode(200)
+                .assertThat()
+                .body("data.list.size", greaterThan(0))
     }
 
 
