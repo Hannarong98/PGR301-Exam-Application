@@ -113,13 +113,13 @@
             <version>${rest-assured.version}</version>
         </dependency>
 
-        <!--
+
         <dependency>
             <groupId>io.micrometer</groupId>
             <artifactId>micrometer-registry-influx</artifactId>
             <version>${micrometer-registry-influx.version}</version>
         </dependency>
-        -->
+
 
         <dependency>
             <groupId>com.h2database</groupId>

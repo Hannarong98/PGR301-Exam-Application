@@ -50,18 +50,6 @@ class StudentService (
         return true
     }
 
-    private fun validateStudent(studentId: String) {
-        if (!studentRepository.existsById(studentId)) {
-            throw IllegalArgumentException("Student $studentId does not exist")
-        }
-    }
-
-    private fun validateCourse(courseId: String) {
-        if (!courseRepository.existsById(courseId)) {
-            throw IllegalArgumentException("Course $courseId does not exist")
-        }
-    }
-
     private fun validateIfExamTaken(courseId: String, student: Student): Boolean {
         return examResultRepository.existsByCourseCodeAndStudent(courseId, student)
     }
@@ -78,9 +66,6 @@ class StudentService (
     }
 
     fun takeExam(studentId: String, courseId: String): ExamResult? {
-        validateStudent(studentId)
-        validateCourse(courseId)
-
 
         val student = studentRepository.findByStudentId(studentId)!!
         val course = courseRepository.findByCourseCode(courseId)!!
@@ -93,6 +78,7 @@ class StudentService (
             it.courseName = course.courseName
             it.student = student
             it.grade = getRandomGrade()
+            it.timeSpentOnExam = (0..4).random()
             it.timeSpentOnCourse = faker.random().nextInt(10, 200)
         }
 
@@ -103,7 +89,15 @@ class StudentService (
         return examResult
     }
 
-    fun getExamResults(studentId: String) : List<ExamResult> {
+    fun getAll(): MutableIterable<Student> {
+        return studentRepository.findAll()
+    }
+
+    fun studentExist(studentId: String) : Boolean {
+        return studentRepository.existsById(studentId)
+    }
+
+    fun getExamResults(studentId: String): List<ExamResult> {
        return examResultRepository.findAllByStudentStudentId(studentId)
     }
 

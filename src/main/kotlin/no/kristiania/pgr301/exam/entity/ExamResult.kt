@@ -5,6 +5,7 @@ import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
 import javax.persistence.ManyToOne
+import javax.validation.constraints.Max
 import javax.validation.constraints.Min
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
@@ -24,6 +25,11 @@ data class ExamResult (
 
         @get:NotNull
         var grade: Grade? = null,
+
+        @get:NotNull
+        @get:Min(0)
+        @get:Max(4)
+        var timeSpentOnExam: Int? = 0,
 
         @get:NotNull
         @get:Min(0)
