@@ -10,7 +10,8 @@ object DtoConvertExamResult {
             courseCode = examResult.courseCode
             courseName = examResult.courseName
             grade = examResult.grade
-            timeSpentOnCourse = examResult.timeSpentOnCourse
+            timeSpentOnCourseHrs = examResult.timeSpentOnCourseHrs
+            timeSpentOnExamHrs = examResult.timeSpentOnExamHrs
         }
     }
 

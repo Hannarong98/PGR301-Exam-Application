@@ -8,9 +8,9 @@ class ExamResultDto(
 
         var grade: Grade? = null,
 
-        var timeSpentOnExam: Int? = 0,
+        var timeSpentOnExamHrs: Double? = 0.0,
 
-        var timeSpentOnCourse: Int? = 0,
+        var timeSpentOnCourseHrs: Int? = 0,
 
         var id: Long? = null
 

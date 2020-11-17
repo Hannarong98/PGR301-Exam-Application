@@ -29,11 +29,11 @@ data class ExamResult (
         @get:NotNull
         @get:Min(0)
         @get:Max(4)
-        var timeSpentOnExam: Int? = 0,
+        var timeSpentOnExamHrs: Double? = 0.0,
 
         @get:NotNull
         @get:Min(0)
-        var timeSpentOnCourse: Int? = 0,
+        var timeSpentOnCourseHrs: Int? = 0,
 
         @get:Id
         @get:GeneratedValue

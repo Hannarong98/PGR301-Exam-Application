@@ -113,7 +113,7 @@ class StudentController(
 
             meterRegistry.summary("avg_time_spent_on_exam",
             "course_name", examResult.courseName)
-                    .record(examResult.timeSpentOnExam!!.toDouble())
+                    .record(examResult.timeSpentOnExamHrs!!)
 
             RestResponseFactory.payload(200, DtoConvertExamResult.transform(examResult))
         }
