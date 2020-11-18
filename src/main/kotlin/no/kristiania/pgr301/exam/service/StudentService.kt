@@ -50,24 +50,12 @@ class StudentService (
         return true
     }
 
-    private fun validateStudent(studentId: String) {
-        if (!studentRepository.existsById(studentId)) {
-            throw IllegalArgumentException("Student $studentId does not exist")
-        }
-    }
-
-    private fun validateCourse(courseId: String) {
-        if (!courseRepository.existsById(courseId)) {
-            throw IllegalArgumentException("Course $courseId does not exist")
-        }
-    }
-
     private fun validateIfExamTaken(courseId: String, student: Student): Boolean {
         return examResultRepository.existsByCourseCodeAndStudent(courseId, student)
     }
 
     private fun getRandomGrade() : Grade{
-        return when((0..7).random()){
+        return when((1..6).random()){
             1-> Grade.F
             2-> Grade.E
             3-> Grade.D
@@ -77,10 +65,7 @@ class StudentService (
         }
     }
 
-    fun takeExam(studentId: String, courseId: String): ExamResult? {
-        validateStudent(studentId)
-        validateCourse(courseId)
-
+    fun submitExam(studentId: String, courseId: String): ExamResult? {
 
         val student = studentRepository.findByStudentId(studentId)!!
         val course = courseRepository.findByCourseCode(courseId)!!
@@ -93,7 +78,9 @@ class StudentService (
             it.courseName = course.courseName
             it.student = student
             it.grade = getRandomGrade()
-            it.timeSpentOnCourse = faker.random().nextInt(10, 200)
+            it.timeSpentOnExamHrs = faker.number().randomDouble(1, 0, 4)
+            it.attempts = (1..3).random()
+            it.timeSpentOnCourseHrs = (10..200).random()
         }
 
         student.examResults.add(examResult)
@@ -103,7 +90,17 @@ class StudentService (
         return examResult
     }
 
-    fun getExamResults(studentId: String) : List<ExamResult> {
+    fun getAll(): MutableIterable<Student> {
+        val randomDouble = faker.number().randomDouble(0, 500, 1500)
+        Thread.sleep(randomDouble.toLong())
+        return studentRepository.findAll()
+    }
+
+    fun studentExist(studentId: String) : Boolean {
+        return studentRepository.existsById(studentId)
+    }
+
+    fun getExamResults(studentId: String): List<ExamResult> {
        return examResultRepository.findAllByStudentStudentId(studentId)
     }
 
