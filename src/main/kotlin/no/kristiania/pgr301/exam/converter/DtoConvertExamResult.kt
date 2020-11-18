@@ -9,6 +9,7 @@ object DtoConvertExamResult {
         return ExamResultDto().apply {
             courseCode = examResult.courseCode
             courseName = examResult.courseName
+            attempts = examResult.attempts
             grade = examResult.grade
             timeSpentOnCourseHrs = examResult.timeSpentOnCourseHrs
             timeSpentOnExamHrs = examResult.timeSpentOnExamHrs

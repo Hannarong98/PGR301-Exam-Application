@@ -10,6 +10,8 @@ class ExamResultDto(
 
         var timeSpentOnExamHrs: Double? = 0.0,
 
+        var attempts: Int? = 0,
+
         var timeSpentOnCourseHrs: Int? = 0,
 
         var id: Long? = null

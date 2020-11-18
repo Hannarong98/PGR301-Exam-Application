@@ -55,7 +55,7 @@ class StudentService (
     }
 
     private fun getRandomGrade() : Grade{
-        return when((0..7).random()){
+        return when((1..6).random()){
             1-> Grade.F
             2-> Grade.E
             3-> Grade.D
@@ -65,7 +65,7 @@ class StudentService (
         }
     }
 
-    fun takeExam(studentId: String, courseId: String): ExamResult? {
+    fun submitExam(studentId: String, courseId: String): ExamResult? {
 
         val student = studentRepository.findByStudentId(studentId)!!
         val course = courseRepository.findByCourseCode(courseId)!!
@@ -79,7 +79,8 @@ class StudentService (
             it.student = student
             it.grade = getRandomGrade()
             it.timeSpentOnExamHrs = faker.number().randomDouble(1, 0, 4)
-            it.timeSpentOnCourseHrs = faker.random().nextInt(10, 200)
+            it.attempts = (1..3).random()
+            it.timeSpentOnCourseHrs = (10..200).random()
         }
 
         student.examResults.add(examResult)
@@ -90,6 +91,8 @@ class StudentService (
     }
 
     fun getAll(): MutableIterable<Student> {
+        val randomDouble = faker.number().randomDouble(0, 500, 1500)
+        Thread.sleep(randomDouble.toLong())
         return studentRepository.findAll()
     }
 

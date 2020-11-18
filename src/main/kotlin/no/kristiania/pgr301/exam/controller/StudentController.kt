@@ -2,15 +2,16 @@ package no.kristiania.pgr301.exam.controller
 
 import com.github.javafaker.Faker
 import io.micrometer.core.annotation.Timed
+import io.micrometer.core.instrument.DistributionSummary
+import io.micrometer.core.instrument.LongTaskTimer
 import io.micrometer.core.instrument.MeterRegistry
 import io.micrometer.core.instrument.Timer
-import io.micrometer.core.instrument.simple.SimpleMeterRegistry
 import no.kristiania.pgr301.exam.converter.DtoConvertExamResult
 import no.kristiania.pgr301.exam.converter.DtoConverterStudent
 import no.kristiania.pgr301.exam.dto.ExamResultDto
 import no.kristiania.pgr301.exam.dto.SignUpDto
 import no.kristiania.pgr301.exam.dto.StudentDto
-import no.kristiania.pgr301.exam.repository.ExamResultRepository
+import no.kristiania.pgr301.exam.entity.Student
 import no.kristiania.pgr301.exam.service.StudentService
 import no.kristiania.pgr301.exam.service.UserService
 import no.kristiania.pgr301.exam.util.RestResponseFactory
@@ -30,23 +31,21 @@ class StudentController(
         private val meterRegistry: MeterRegistry
 ) {
 
-    private val faker = Faker()
-
-
-    // TODO
-    // Please check this later
-
     @GetMapping(path = ["/"])
-    @Timed("get_all_student", longTask = true)
     fun getStudents(
     ): ResponseEntity<WrappedResponse<List<StudentDto>>> {
 
-        val randomDouble = faker.number().randomDouble(0, 1000, 3000)
+        var students: MutableIterable<Student> = mutableListOf()
 
-        Thread.sleep(randomDouble.toLong())
-        // Assumes this is a long running async task
-        val students = studentService.getAll()
-        meterRegistry.gauge("students_age_by_avg", students.map { it.age }.average())
+
+        LongTaskTimer.builder("api_response_long_task")
+                .register(meterRegistry)
+                .recordCallable {
+                    //getAll() have Thread.sleep function before return
+                    students = studentService.getAll()
+                }
+
+        meterRegistry.gauge("students_age_average", students.map { it.age }.average())
 
         return RestResponseFactory.payload(200, DtoConverterStudent.transform(students))
     }
@@ -60,14 +59,14 @@ class StudentController(
         val timer = Timer.start(meterRegistry)
         val student = studentService.findByIdEager(studentId)
 
-        val responseStatus = when(studentService.studentExist(studentId)){
+        val responseStatus = when (studentService.studentExist(studentId)) {
             true -> 200
             false -> 404
         }
 
-        timer.stop(meterRegistry.timer("response_timer", "get_one_student", responseStatus.toString()))
+        timer.stop(meterRegistry.timer("api_response", "/api/students/${studentId}", responseStatus.toString()))
 
-        if(student == null){
+        if (student == null) {
             return ResponseEntity.notFound().build()
         }
 
@@ -81,13 +80,17 @@ class StudentController(
         val registered = userService.createUser(studentId)
 
         if (!registered) {
-            meterRegistry.counter("api_request", "/api/students/signup", "400").increment()
+            meterRegistry.counter("api_response",
+                    "uri", "/api/students/signup",
+                    "response_code", "400").increment()
             return RestResponseFactory.userFailure("Id already existed", 400)
         }
 
         registerStudentToDashBoard(studentId)
 
-        meterRegistry.counter("api_request", "/api/students/signup", "201").increment()
+        meterRegistry.counter("api_response",
+                "uri", "/api/students/signup",
+                "response_code", "201").increment()
         return RestResponseFactory.noPayload(201)
     }
 
@@ -102,18 +105,18 @@ class StudentController(
             @PathVariable
             courseCode: String
     ): ResponseEntity<WrappedResponse<ExamResultDto>> {
-        val examResult = studentService.takeExam(studentId, courseCode)
+        val examResult = studentService.submitExam(studentId, courseCode)
 
         return if (examResult == null) {
             RestResponseFactory.userFailure("Student had already taken $courseCode exam", 400)
         } else {
 
-            meterRegistry.counter("exam_taken",
-                    "course_name", examResult.courseName).increment()
-
-            meterRegistry.summary("avg_time_spent_on_exam",
-            "course_name", examResult.courseName)
-                    .record(examResult.timeSpentOnExamHrs!!)
+            DistributionSummary.builder("exam_completion")
+                    .tag("type", "attempts_taken")
+                    .minimumExpectedValue(1)
+                    .maximumExpectedValue(4)
+                    .register(meterRegistry)
+                    .record(examResult.attempts!!.toDouble())
 
             RestResponseFactory.payload(200, DtoConvertExamResult.transform(examResult))
         }
