@@ -8,10 +8,13 @@ import no.kristiania.pgr301.exam.converter.DtoConverterCourse
 import no.kristiania.pgr301.exam.dto.CourseDto
 import no.kristiania.pgr301.exam.repository.CourseRepository
 import no.kristiania.pgr301.exam.service.CourseService
+import no.kristiania.pgr301.exam.service.FakeDataService
 import no.kristiania.pgr301.exam.util.RestResponseFactory
 import no.kristiania.pgr301.exam.util.WrappedResponse
+import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import kotlin.math.log
 
 @RestController
 @RequestMapping(path = ["/api/courses"])
@@ -21,6 +24,10 @@ class CourseController(
         private val meterRegistry: MeterRegistry
 ) {
 
+    companion object {
+        private val logger = LoggerFactory.getLogger(CourseController::class.java)
+    }
+
 
     @GetMapping
     fun getCourses() : ResponseEntity<WrappedResponse<List<CourseDto>>> {
@@ -28,6 +35,7 @@ class CourseController(
 
         meterRegistry.gaugeCollectionSize("courses_total", Tags.empty(), courses.toList())
 
+        logger.debug("Total courses available ${courses.count()}")
 
         return RestResponseFactory.payload(200, DtoConverterCourse.transform(courses))
     }

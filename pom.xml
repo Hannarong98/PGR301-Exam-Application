@@ -25,6 +25,8 @@
         <spring-cloud.version>Hoxton.RELEASE</spring-cloud.version>
         <javafaker.version>1.0.2</javafaker.version>
         <micrometer-registry-influx.version>1.3.0</micrometer-registry-influx.version>
+        <logzio-logback-appender.version>1.0.24</logzio-logback-appender.version>
+        <jackson-module-kotlin.version>2.11.2</jackson-module-kotlin.version>
     </properties>
 
     <dependencies>
@@ -119,6 +121,19 @@
             <artifactId>micrometer-registry-influx</artifactId>
             <version>${micrometer-registry-influx.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>io.logz.logback</groupId>
+            <artifactId>logzio-logback-appender</artifactId>
+            <version>${logzio-logback-appender.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.module</groupId>
+            <artifactId>jackson-module-kotlin</artifactId>
+            <version>${jackson-module-kotlin.version}</version>
+        </dependency>
+
 
 
         <dependency>

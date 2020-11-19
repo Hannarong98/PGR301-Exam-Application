@@ -1,7 +1,5 @@
 package no.kristiania.pgr301.exam.controller
 
-import com.github.javafaker.Faker
-import io.micrometer.core.annotation.Timed
 import io.micrometer.core.instrument.DistributionSummary
 import io.micrometer.core.instrument.LongTaskTimer
 import io.micrometer.core.instrument.MeterRegistry
@@ -16,6 +14,7 @@ import no.kristiania.pgr301.exam.service.StudentService
 import no.kristiania.pgr301.exam.service.UserService
 import no.kristiania.pgr301.exam.util.RestResponseFactory
 import no.kristiania.pgr301.exam.util.WrappedResponse
+import org.slf4j.LoggerFactory
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -30,6 +29,10 @@ class StudentController(
         private val studentService: StudentService,
         private val meterRegistry: MeterRegistry
 ) {
+
+    companion object {
+        private val logger = LoggerFactory.getLogger(StudentController::class.java)
+    }
 
     @GetMapping(path = ["/"])
     fun getStudents(
@@ -64,6 +67,8 @@ class StudentController(
             false -> 404
         }
 
+        logger.debug("Returning $responseStatus")
+
         timer.stop(meterRegistry.timer("api_response", "/api/students/${studentId}", responseStatus.toString()))
 
         if (student == null) {
@@ -80,17 +85,17 @@ class StudentController(
         val registered = userService.createUser(studentId)
 
         if (!registered) {
-            meterRegistry.counter("api_response",
-                    "uri", "/api/students/signup",
-                    "response_code", "400").increment()
+            meterRegistry.counter("api_response", "uri", "/api/students/signup", "response_code", "400").increment()
+            logger.warn("Could not create user with id: $studentId this id already exist")
             return RestResponseFactory.userFailure("Id already existed", 400)
         }
 
         registerStudentToDashBoard(studentId)
 
-        meterRegistry.counter("api_response",
-                "uri", "/api/students/signup",
-                "response_code", "201").increment()
+        meterRegistry.counter("api_response", "uri", "/api/students/signup", "response_code", "201").increment()
+
+        logger.info("Successfully signed up student to dashboard")
+
         return RestResponseFactory.noPayload(201)
     }
 
@@ -108,6 +113,7 @@ class StudentController(
         val examResult = studentService.submitExam(studentId, courseCode)
 
         return if (examResult == null) {
+            logger.warn("Student $studentId has already taken $courseCode exam")
             RestResponseFactory.userFailure("Student had already taken $courseCode exam", 400)
         } else {
 
@@ -118,6 +124,8 @@ class StudentController(
                     .register(meterRegistry)
                     .record(examResult.attempts!!.toDouble())
 
+            logger.debug("Course code $courseCode")
+            logger.info("A student submitted $courseCode exam")
             RestResponseFactory.payload(200, DtoConvertExamResult.transform(examResult))
         }
     }
