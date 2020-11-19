@@ -19,4 +19,7 @@ before_install:
   - export GOOGLE_APPLICATION_CREDENTIALS=./google-key.json
 install: true
 after_success:
-  - "./scripts/pushToRegistry.sh"
+  - |
+    set -ex;
+    docker build -t "${IMAGE}:${TRAVIS_COMMIT}" . && \
+    docker push "${IMAGE}:${TRAVIS_COMMIT}"
