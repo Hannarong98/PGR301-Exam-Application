@@ -1,25 +1,22 @@
 language: java
 jdk:
-- openjdk11
-cache:
-  directories:
-  - ".autoconf"
-  - "$HOME/.m2"
+  - openjdk11
+
 env:
   global:
-  - CLOUDSDK_CORE_DISABLE_PROMPTS=1
-  - GCP_PROJECT_ID=pgr301-exam-hannarong
-  - IMAGE=gcr.io/pgr301-exam-hannarong/examapp
+    - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+    - GCP_PROJECT_ID=pgr301-exam-hannarong
+    - IMAGE=gcr.io/pgr301-exam-hannarong/examapp
 before_install:
-- openssl aes-256-cbc -K $encrypted_98d237b7dbf4_key -iv $encrypted_98d237b7dbf4_iv
-  -in google-key.json.enc -out google-key.json -d
-- curl https://sdk.cloud.google.com | bash > /dev/null
-- source "$HOME/google-cloud-sdk/path.bash.inc"
-- gcloud auth activate-service-account --key-file=google-key.json
-- gcloud auth configure-docker
-- gcloud config set project "${GCP_PROJECT_ID}"
-- gcloud components install beta
-- export GOOGLE_APPLICATION_CREDENTIALS=./google-key.json
+  - openssl aes-256-cbc -K $encrypted_98d237b7dbf4_key -iv $encrypted_98d237b7dbf4_iv
+    -in google-key.json.enc -out google-key.json -d
+  - curl https://sdk.cloud.google.com | bash > /dev/null
+  - source "$HOME/google-cloud-sdk/path.bash.inc"
+  - gcloud auth activate-service-account --key-file=google-key.json
+  - gcloud auth configure-docker
+  - gcloud config set project "${GCP_PROJECT_ID}"
+  - gcloud components install beta
+  - export GOOGLE_APPLICATION_CREDENTIALS=./google-key.json
 install: true
 after_success:
-- "./scripts/pushToRegistry.sh"
+  - "./scripts/pushToRegistry.sh"
