@@ -21,5 +21,6 @@ install: true
 after_success:
   - |
     set -ex;
+    test $TRAVIS_BRANCH = "master" && \
     docker build -t "${IMAGE}:${TRAVIS_COMMIT}" . && \
     docker push "${IMAGE}:${TRAVIS_COMMIT}"
