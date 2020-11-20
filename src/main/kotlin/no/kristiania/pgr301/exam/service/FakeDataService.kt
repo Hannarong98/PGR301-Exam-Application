@@ -8,7 +8,7 @@ import javax.annotation.PostConstruct
 @Transactional
 class FakeDataService (
         private val courseService: CourseService,
-        private val userService: UserService
+        private val studentService: StudentService
 ) {
 
     companion object {
@@ -36,19 +36,19 @@ class FakeDataService (
             createCourse("3005", "DevOps i skyen")
             createCourse("3006", "Embedded systems")
         }
-        logger.info("FakeDataService finished adding courses");
+        logger.info("FakeDataService finished registering courses");
 
-        userService.run {
-            createUser("benost20")
-            createUser("andarc20")
-            createUser("glebch20")
-            createUser("tomsan20")
-            createUser("johbro20")
-            createUser("eivbre20")
-            createUser("rolgon20")
+        studentService.run {
+            registerStudent("benost20")
+            registerStudent("andarc20")
+            registerStudent("glebch20")
+            registerStudent("tomsan20")
+            registerStudent("johbro20")
+            registerStudent("eivbre20")
+            registerStudent("rolgon20")
         }
 
-        logger.info("FakeDataService finished adding test students");
+        logger.info("FakeDataService finished registering students");
     }
 
 }
