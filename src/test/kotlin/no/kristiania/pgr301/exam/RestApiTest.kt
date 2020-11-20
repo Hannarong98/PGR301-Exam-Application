@@ -110,7 +110,7 @@ class RestApiTest{
 
         val studentId = faker.name().firstName()
 
-        val courseCode =  faker.app().version()
+        val courseCode =  "600${faker.random().nextInt(0, 9)}"
         val courseName = "Introduction to ${faker.programmingLanguage().name()}"
 
         val studentDto = SignUpDto(studentId)

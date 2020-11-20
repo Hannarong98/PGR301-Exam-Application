@@ -36,9 +36,6 @@ data class ExamResult (
         @get:Max(4)
         var timeSpentOnExamHrs: Double? = 0.0,
 
-        @get:NotNull
-        @get:Min(0)
-        var timeSpentOnCourseHrs: Int? = 0,
 
         @get:Id
         @get:GeneratedValue

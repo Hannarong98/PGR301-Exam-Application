@@ -11,14 +11,17 @@ class UserService (
 ) {
 
     companion object {
-        private val logger = LoggerFactory.getLogger(UserService::class.java)
+        private val logger = LoggerFactory.getLogger(UserService::class.java.simpleName)
     }
 
-    fun createUser(studentId: String): Boolean{
+    fun createUser(studentId: String?): Boolean{
 
+        if(studentId == null){
+            logger.error("Error student id cannot be null")
+        }
 
         try {
-            if(userRepository.existsById(studentId)){
+            if(userRepository.existsById(studentId!!)){
                 return false
             }
             val user = User(studentId)

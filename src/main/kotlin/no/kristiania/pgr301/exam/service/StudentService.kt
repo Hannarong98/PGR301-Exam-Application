@@ -80,7 +80,6 @@ class StudentService (
             it.grade = getRandomGrade()
             it.timeSpentOnExamHrs = faker.number().randomDouble(1, 0, 4)
             it.attempts = (1..3).random()
-            it.timeSpentOnCourseHrs = (10..200).random()
         }
 
         student.examResults.add(examResult)

@@ -31,24 +31,24 @@ class StudentController(
 ) {
 
     companion object {
-        private val logger = LoggerFactory.getLogger(StudentController::class.java)
+        private val logger = LoggerFactory.getLogger(StudentController::class.java.simpleName)
     }
 
-    @GetMapping(path = ["/"])
+    @GetMapping
     fun getStudents(
     ): ResponseEntity<WrappedResponse<List<StudentDto>>> {
 
         var students: MutableIterable<Student> = mutableListOf()
 
 
-        LongTaskTimer.builder("api_response_long_task")
+        LongTaskTimer.builder("long_running_task")
                 .register(meterRegistry)
                 .recordCallable {
-                    //getAll() have Thread.sleep function before return
+                    //getAll() do Thread.sleep function before return
                     students = studentService.getAll()
                 }
 
-        meterRegistry.gauge("students_age_average", students.map { it.age }.average())
+        meterRegistry.gauge("students_avg_age", students.map { it.age }.average())
 
         return RestResponseFactory.payload(200, DtoConverterStudent.transform(students))
     }
@@ -67,11 +67,12 @@ class StudentController(
             false -> 404
         }
 
-        logger.debug("Returning $responseStatus")
+        logger.debug("StudentController::getStudent($studentId) returning $responseStatus")
 
-        timer.stop(meterRegistry.timer("api_response", "/api/students/${studentId}", responseStatus.toString()))
+        timer.stop(meterRegistry.timer("timer_short", "/api/students/${studentId}", responseStatus.toString()))
 
         if (student == null) {
+            logger.error("Cannot get null values")
             return ResponseEntity.notFound().build()
         }
 
@@ -80,6 +81,8 @@ class StudentController(
 
     @PostMapping(path = ["/signup"], consumes = [(MediaType.APPLICATION_JSON_VALUE)])
     fun signup(@RequestBody dto: SignUpDto): ResponseEntity<WrappedResponse<Void>> {
+
+
 
         val studentId = dto.studentId!!
         val registered = userService.createUser(studentId)
@@ -117,8 +120,8 @@ class StudentController(
             RestResponseFactory.userFailure("Student had already taken $courseCode exam", 400)
         } else {
 
-            DistributionSummary.builder("exam_completion")
-                    .tag("type", "attempts_taken")
+            DistributionSummary.builder("exam.completion")
+                    .tag("type", "attempts.taken")
                     .minimumExpectedValue(1)
                     .maximumExpectedValue(4)
                     .register(meterRegistry)

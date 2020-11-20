@@ -11,7 +11,6 @@ object DtoConvertExamResult {
             courseName = examResult.courseName
             attempts = examResult.attempts
             grade = examResult.grade
-            timeSpentOnCourseHrs = examResult.timeSpentOnCourseHrs
             timeSpentOnExamHrs = examResult.timeSpentOnExamHrs
         }
     }

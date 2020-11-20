@@ -12,8 +12,6 @@ class ExamResultDto(
 
         var attempts: Int? = 0,
 
-        var timeSpentOnCourseHrs: Int? = 0,
-
         var id: Long? = null
 
 )

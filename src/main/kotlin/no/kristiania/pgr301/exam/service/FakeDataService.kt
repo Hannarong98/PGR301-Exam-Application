@@ -1,4 +1,5 @@
 package no.kristiania.pgr301.exam.service
+import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import javax.annotation.PostConstruct
@@ -6,30 +7,48 @@ import javax.annotation.PostConstruct
 @Service
 @Transactional
 class FakeDataService (
-        private val courseService: CourseService
+        private val courseService: CourseService,
+        private val userService: UserService
 ) {
+
+    companion object {
+        private val logger = LoggerFactory.getLogger(FakeDataService::class.java.simpleName)
+    }
 
     @PostConstruct
     fun init(){
         courseService.run {
-            createCourse("TK1100", "Digital teknologi")
-            createCourse("PRO100", "Kreativt webprosjekt")
-            createCourse("PGR102", "Introduksjon til programmering")
-            createCourse("DB1100", "Databaser 1")
-            createCourse("TK2100", "Informasjonssikkerhet")
-            createCourse("PRO101", "Webprosjekt")
-            createCourse("PGR103", "Objektorientert programmering")
-            createCourse("PGR203", "Avansert Javaprogrammering")
-            createCourse("PG4200", "Algoritmer og datastrukturer")
-            createCourse("PG3301", "Software Design")
-            createCourse("PRO200", "Smidig prosjekt")
-            createCourse("PGR208", "Android programmering")
-            createCourse("PG5100", "Enterpriseprogrammering 1")
-            createCourse("PG6102", "Enterpriseprogrammering 2")
-            createCourse("PG3401", "Programmering i C for Linux")
-            createCourse("PGR301", "DevOps i skyen")
-            createCourse("PG5501", "Embedded systems")
+            createCourse("1001", "Digital teknologi")
+            createCourse("1002", "Kreativt webprosjekt")
+            createCourse("1003", "Introduksjon til programmering")
+            createCourse("1004", "Databaser 1")
+            createCourse("2001", "Informasjonssikkerhet")
+            createCourse("2002", "Webprosjekt")
+            createCourse("2003", "Objektorientert programmering")
+            createCourse("2004", "Avansert Javaprogrammering")
+            createCourse("2005", "Algoritmer og datastrukturer")
+            createCourse("2006", "Software Design")
+            createCourse("2008", "Smidig prosjekt")
+            createCourse("2009", "Android programmering")
+            createCourse("3001", "Enterpriseprogrammering 1")
+            createCourse("3002", "Enterpriseprogrammering 2")
+            createCourse("3004", "Programmering i C for Linux")
+            createCourse("3005", "DevOps i skyen")
+            createCourse("3006", "Embedded systems")
         }
+        logger.info("FakeDataService finished adding courses");
+
+        userService.run {
+            createUser("benost20")
+            createUser("andarc20")
+            createUser("glebch20")
+            createUser("tomsan20")
+            createUser("johbro20")
+            createUser("eivbre20")
+            createUser("rolgon20")
+        }
+
+        logger.info("FakeDataService finished adding test students");
     }
 
 }

@@ -24,7 +24,8 @@
                 <pattern>%-4relative [%thread] %-5level %logger{35} - %msg %n</pattern>
             </encoder>
         </appender>
-        <root level="info">
+        <!-- Can change to info as root if you dont want to see debug logs -->
+        <root level="debug">
             <appender-ref ref="STDOUT"/>
         </root>
     </springProfile>
