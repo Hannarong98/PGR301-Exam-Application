@@ -1,6 +1,10 @@
 language: java
+
 jdk:
   - openjdk11
+
+services:
+  - docker
 
 env:
   global:
