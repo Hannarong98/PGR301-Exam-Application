@@ -10,6 +10,8 @@ env:
   global:
     - CLOUDSDK_CORE_DISABLE_PROMPTS=1
     - GCP_PROJECT_ID=pgr301-exam-hannarong
+    - CLOUD_RUN_SERVICE=cloud_run_srv
+    - CLOUD_RUN_REGIOM=us-central1
     - IMAGE=gcr.io/pgr301-exam-hannarong/examapp
 before_install:
   - openssl aes-256-cbc -K $encrypted_98d237b7dbf4_key -iv $encrypted_98d237b7dbf4_iv
@@ -27,4 +29,10 @@ after_success:
     set -ex;
     test $TRAVIS_BRANCH = "master" && \
     docker build -t "${IMAGE}:${TRAVIS_COMMIT}" . && \
-    docker push "${IMAGE}:${TRAVIS_COMMIT}"
+    docker push "${IMAGE}:${TRAVIS_COMMIT}" && \
+    gcloud beta run deploy "${CLOUD_RUN_SERVICE}" \
+         --image="${IMAGE}:${TRAVIS_COMMIT}" \
+         --platform=managed \
+         --region="${CLOUD_RUN_REGION}" \
+         --allow-unauthenticated;
+       set +x

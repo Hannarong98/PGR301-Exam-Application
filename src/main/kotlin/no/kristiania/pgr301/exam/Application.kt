@@ -12,5 +12,5 @@ fun main(args: Array<String>) {
     // when you are running 'dev' profile and you want to get metrics to
     // be submitted to influxdb do change this ....influx.enabled=false in application.properties
     // to ....influx.enabled=true
-    SpringApplication.run(Application::class.java, "--spring.profiles.active=prod")
+    SpringApplication.run(Application::class.java, "--spring.profiles.active=dev")
 }
