@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.com/Hannarong98/PGR301-Exam-application.svg?token=DqMpxq41VWvgzW8Fy3oq&branch=master)](https://travis-ci.com/Hannarong98/PGR301-Exam-application)
 
+
 Container registry pipeline setup
 ---
 #### Encrypt following secrets
@@ -41,3 +42,8 @@ Available endpoints
 * `PUT /api/students/:studentId/exams/:courseCode`
 
 ##### NOTE: Post requests accepts JSON as MediaType
+
+Links
+---
+
+[Infrastructure](https://github.com/Hannarong98/PGR301-Exam-Infrastructure)
