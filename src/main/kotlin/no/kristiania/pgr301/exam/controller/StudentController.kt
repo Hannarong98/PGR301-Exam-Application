@@ -40,15 +40,16 @@ class StudentController(
 
         var students: MutableIterable<Student> = mutableListOf()
 
-
         LongTaskTimer.builder("long_running_task")
                 .register(meterRegistry)
                 .recordCallable {
-                    //getAll() do Thread.sleep function before return
+                    //getAll() do Thread.sleep function before returning data
                     students = studentService.getAll()
                 }
 
         meterRegistry.gauge("students_avg_age", students.map { it.age }.average())
+
+        logger.info("User requested list of all students")
 
         return RestResponseFactory.payload(200, DtoConverterStudent.transform(students))
     }
@@ -133,7 +134,7 @@ class StudentController(
         }
     }
 
-    @GetMapping(path = ["/{studentId}/exams/"])
+    @GetMapping(path = ["/{studentId}/exams"])
     fun getExamResults(
             @PathVariable("studentId")
             studentId: String

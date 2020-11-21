@@ -57,9 +57,13 @@ class CourseController(
             @RequestBody
             dto: CourseDto
     ) : ResponseEntity<WrappedResponse<CourseDto>> {
+
+        logger.debug("Creating ${dto.courseCode} with name ${dto.courseName}")
         val course = courseService.createCourse(dto.courseCode!!, dto.courseName!!)
                 ?: return RestResponseFactory.userFailure("Could not create this course", 400)
 
+
+        logger.info("New course has been created")
         return RestResponseFactory.payload(201, DtoConverterCourse.transform(course))
     }
 }

@@ -5,26 +5,22 @@ import io.restassured.RestAssured
 import io.restassured.RestAssured.given
 import io.restassured.http.ContentType
 import no.kristiania.pgr301.exam.dto.CourseDto
-import no.kristiania.pgr301.exam.dto.Grade
 import no.kristiania.pgr301.exam.dto.SignUpDto
-import no.kristiania.pgr301.exam.repository.CourseRepository
 import no.kristiania.pgr301.exam.repository.ExamResultRepository
-import no.kristiania.pgr301.exam.repository.StudentRepository
 import no.kristiania.pgr301.exam.service.CourseService
 import no.kristiania.pgr301.exam.service.StudentService
 import no.kristiania.pgr301.exam.service.UserService
-import org.hamcrest.CoreMatchers.*
+import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.CoreMatchers.notNullValue
+import org.hamcrest.Matchers.greaterThan
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.web.server.LocalServerPort
-import org.springframework.test.context.junit.jupiter.SpringExtension
-import org.hamcrest.Matchers.greaterThan
-import org.hamcrest.Matchers.notANumber
-import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
 import org.springframework.context.annotation.Profile
+import org.springframework.test.context.junit.jupiter.SpringExtension
 import javax.annotation.PostConstruct
 
 @ExtendWith(SpringExtension::class)
