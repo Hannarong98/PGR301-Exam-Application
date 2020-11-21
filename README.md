@@ -1,17 +1,43 @@
-## PGR301 Exam Autumn 2020
+## PGR301-Exam-Application
 
 [![Build Status](https://travis-ci.com/Hannarong98/PGR301-Exam-application.svg?token=DqMpxq41VWvgzW8Fy3oq&branch=master)](https://travis-ci.com/Hannarong98/PGR301-Exam-application)
 
-## How to add secrets to travis
+Container registry pipeline setup
+---
+#### Encrypt following secrets
+* `travis encrypt-file --pro google-key.json --add`
+    * `google-key.json.enc` file is safe to commit to the repository
+    * `google-key.json` contains google service account private key __DO NOT__ commit this file
 
-* Do the following if it's a value
-    * `travis encrypt --pro MY_SECRET_ENV=SUPER_SECRET_VALUES --add`
-    * Note if you are not using `travis-ci.com` then you will have to remove `--pro` flag
-    * This will automatically add a secure environment variable in the `.travis.yml` file
-    
-* If it's a file you wish to encrypt do 
-    * `travis encrypt-file --pro your-secret-file.json`
-    * You will most likely get an openssl command as a result.
-    * Edit the `.travis.yml` file and add the aforementioned result after `before_install:`
-    * This will also add `your-secret-file.json.enc` file which you can safely push to your repository
-    * Do `NOT` to push the `your-secret-file.json` un-encrypted file to the repository
+Testing the application
+--
+#### 
+* Start the application either through command-line or IDE
+    * Set spring profile in `Application.kt` to `dev`
+    * The application will then be accessible through `localhost:8080`
+
+Metrics
+---
+* All measurements are done in controller classes
+* And these can be found under `controller` package
+
+Available endpoints
+---
+##### Home - useful for statuscake uptime check
+* `GET /` 
+
+##### Courses
+* `GET /api/courses`
+* `GET /api/courses/:courseCode`
+* `POST /api/courses`
+     * `{"courseCode":"your_value", "courseName":"your_value"}`
+
+##### Students
+* `GET /api/students`
+* `GET /api/students/:studentId`
+* `GET /api/students/:studentId/exams`
+* `POST /api/students/signup`
+    * `{"studentId":"your_value"}`
+* `PUT /api/students/:studentId/exams/:courseCode`
+
+##### NOTE: Post requests accepts JSON as MediaType
