@@ -19,8 +19,9 @@ Testing the application
 
 Metrics
 ---
-* All measurements are done in controller classes
+* All measurements are done in controller classes with micrometer
 * And these can be found under `controller` package
+
 
 Available endpoints
 ---

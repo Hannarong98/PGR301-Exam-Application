@@ -20,8 +20,7 @@ import kotlin.math.log
 @RequestMapping(path = ["/api/courses"])
 class CourseController(
         private val courseRepository: CourseRepository,
-        private val courseService: CourseService,
-        private val meterRegistry: MeterRegistry
+        private val courseService: CourseService
 ) {
 
     companion object {
@@ -33,7 +32,7 @@ class CourseController(
     fun getCourses() : ResponseEntity<WrappedResponse<List<CourseDto>>> {
         val courses = courseRepository.findAll()
 
-        meterRegistry.gaugeCollectionSize("courses_total", Tags.empty(), courses.toList())
+        logger.info("User requested for all available courses")
 
         logger.debug("Total courses available ${courses.count()}")
 
@@ -58,7 +57,7 @@ class CourseController(
             dto: CourseDto
     ) : ResponseEntity<WrappedResponse<CourseDto>> {
 
-        logger.debug("Creating ${dto.courseCode} with name ${dto.courseName}")
+        logger.debug("User input ${dto.courseCode} with name ${dto.courseName}")
         val course = courseService.createCourse(dto.courseCode!!, dto.courseName!!)
                 ?: return RestResponseFactory.userFailure("Could not create this course", 400)
 
