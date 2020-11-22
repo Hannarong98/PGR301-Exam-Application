@@ -20,7 +20,7 @@ after_success:
 - |-
   set -ex;
   echo "$AZURE_SP_PSW" | docker login ${ACR} -u "$AZURE_APP_ID" --password-stdin && \
-  docker build -t "${ACR}:${TRAVIS_COMMIT}" . && \
-  docker push "${ACR}:${TRAVIS_COMMIT}"
+  docker build -t "${ACR}/${TRAVIS_COMMIT}" . && \
+  docker push "${ACR}/${TRAVIS_COMMIT}"
 
 
