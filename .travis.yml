@@ -6,22 +6,22 @@ services:
 env:
   global:
   - CLOUDSDK_CORE_DISABLE_PROMPTS=1
-  - GCP_PROJECT_ID=pgr301-exam-hannarong-296202
-  - IMAGE=gcr.io/pgr301-exam-hannarong-296202/examapp
+  - IMAGE=pgr301klihan18.azurecr.io
+  - secure: RZMobpNTAF2aYFWL1hepB3F7XU/D4TO0cfgDjH3XyzuinDsRD/M5sN4gcNsakJnQAQkfRY6pxEMVxqY3ftTxcdbB/hdld6Vu2Ppq+I/cVsBrmWMLBvBGBFUrd9QK0JKGkT1PFN5KHj94ljsXB1+GH6CiLGrcLJqHx+RgKOrencphYzi7zGijybDYl79NWdgXt2B0QDpYa6IPjwQ2eiaBXDJRWcKbGSmVAA/1uv/lFW5jKbk4hwqLLt4I3EsE7ZuLd0cFcVG5AVVuF3pBxL3adpsf4udH0UJS+AfbuiOnpRjqvc6BD6aq9VVZf4Akks4wizf9KL9lHWbm6MyfOi4BNCB3+E+0NglMB1JO3Y5CgKEgSeOhZFlRrCjmaQfh+9jWpH3qyI2gmxGikqRnfYHt3+6gauaX+DoNdGfdLVjiRpwm5vf54tql7wQ+cVPwiiyNteMl4hWV5UQdOMOiFbDkX6ZEUOg7/02NSgrIwJDG808YTbw8df2lN+id5Tl8yVgzO34O89Mvl81HEvf47iYpN5n+yAQ24GOTDbCnkIejoISVXg92IVCgqjOEV5FOkCc2ow3wtFOK0DUbxp0oLHbnoWNQe/5mt1ib6rhMNLd2y21N1MN0HJ0UXR2oNMDupB9EM2vLYiKBub8DH6CEolIl7FjLUvqkUahv5zPzXNH/4A8=
+  - secure: AYjR8e8+B3sGrgo4UYyPb0rBbSOoeAlogT6S4QV8EmAbV6eT1unMU4d6IXi/PvOQYJ07ygpjde3FHFm/Aq/T31WWP0YwRM/bJ8+kAK4ZMDbw71db7u6UVPRMFXjdU5KZQFPujYGonSEwP/B/+S2FdZg1jcy2h9If8vuMDGbfS4PAoo9ES1xTg7mUXL0Nd+p49GmN/D+Fk889rUetoN7e5lDpg/CEB5OlQTk6Vdf6hfQRN5jaPf4tq3lolsxPakiGDzk9Ekt/9RDMW1G1Qx+YJz2BNHGJSU22AbE40/wBTzyCQIIPZP7oUXWQOCLbJBTi/NloPo7wXPnfrXWE7dj6EjkxMFS2A9AOGqIhZBB+3q2FNbxMrNMwFe9wns4Q/W48eL9nCf/XAWYoySSApYNG0B1STeE3hs34ymw59/8/e5nAcGrmhUMvMR3PDKufMcsoQSmvxag3hyeBaoDRyj3D5irerBGg0Lirrosaq+fu/d3ZtI6fhBnZbHivx7IP/TyhAMgGu7rSIP9ZuiHl/nsLig4yIa508nnOY1wb7NmBPwW1v+3ltdduC9QrVS5GdqIyq70hJCGxw5Ugrbp0PVd7yD6b7tfnyG0ZxVbzOYLW7GzPzRiWFAs10VlmPLOmd4vsoZe/hrDanZ8qWy+qeJ5sxiOz049WXAaYZfiqEOqdVBU=
 before_install:
-- openssl aes-256-cbc -K $encrypted_98d237b7dbf4_key -iv $encrypted_98d237b7dbf4_iv
-  -in google-key.json.enc -out google-key.json -d
-- curl https://sdk.cloud.google.com | bash > /dev/null
-- source "$HOME/google-cloud-sdk/path.bash.inc"
-- gcloud auth activate-service-account --key-file=google-key.json
-- gcloud auth configure-docker
-- gcloud config set project "${GCP_PROJECT_ID}"
-- gcloud components install beta
-- export GOOGLE_APPLICATION_CREDENTIALS=./google-key.json
+- AZ_REPO=$(lsb_release -cs) && echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/
+  $AZ_REPO main" | sudo tee /etc/apt/sources.list.d/azure-cli.list
+- curl -L https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+- sudo apt-get install apt-transport-https
+- sudo apt-get update && sudo apt-get install azure-cli
 install: true
 after_success:
 - |-
   set -ex;
   test $TRAVIS_BRANCH = "master" && \
+  echo "$AZURE_SP_PSW" | docker login -u "$AZURE_APP_ID" --password-stdin && \
   docker build -t "${IMAGE}:${TRAVIS_COMMIT}" . && \
   docker push "${IMAGE}:${TRAVIS_COMMIT}"
+
+
