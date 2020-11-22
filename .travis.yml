@@ -19,7 +19,6 @@ install: true
 after_success:
 - |-
   set -ex;
-  test $TRAVIS_BRANCH = "master" && \
   echo "$AZURE_SP_PSW" | docker login -u "$AZURE_APP_ID" --password-stdin && \
   docker build -t "${IMAGE}:${TRAVIS_COMMIT}" . && \
   docker push "${IMAGE}:${TRAVIS_COMMIT}"
