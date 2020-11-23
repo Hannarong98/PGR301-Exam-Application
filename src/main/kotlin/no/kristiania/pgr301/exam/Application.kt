@@ -9,5 +9,5 @@ class Application
 fun main(args: Array<String>) {
     // "--spring.profiles.active=prod" for production ship logs to logz.io
     // "--spring.profiles.active=dev" for development show logs on stdout
-    SpringApplication.run(Application::class.java, "--spring.profiles.active=prod")
+    SpringApplication.run(Application::class.java, "--spring.profiles.active=dev")
 }

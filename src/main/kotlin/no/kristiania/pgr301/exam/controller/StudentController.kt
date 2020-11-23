@@ -121,8 +121,8 @@ class StudentController(
             RestResponseFactory.userFailure("Student had already taken $courseCode exam", 400)
         } else {
 
-            DistributionSummary.builder("exam.completion")
-                    .tag("type", "attempts.taken")
+            DistributionSummary.builder("exam_completion")
+                    .tag("type", "attempts_taken")
                     .minimumExpectedValue(1)
                     .maximumExpectedValue(4)
                     .register(meterRegistry)
