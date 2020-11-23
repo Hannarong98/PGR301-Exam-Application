@@ -1,14 +1,13 @@
 ## PGR301-Exam-Application
 
-[![Build Status](https://travis-ci.com/Hannarong98/PGR301-Exam-application.svg?token=DqMpxq41VWvgzW8Fy3oq&branch=master)](https://travis-ci.com/Hannarong98/PGR301-Exam-application)
-
+[![Build Status](https://travis-ci.com/Hannarong98/PGR301-Exam-application.svg?token=DqMpxq41VWvgzW8Fy3oq&branch=master)](https://travis-ci.com/Hannarong98/PGR301-Exam-application) 
 
 Container registry pipeline setup
 ---
 #### Encrypt following secrets
-* `travis encrypt-file --pro google-key.json --add`
-    * `google-key.json.enc` file is safe to commit to the repository
-    * `google-key.json` contains google service account private key __DO NOT__ commit this file
+* `travis encrypt --pro ACR="YOUR_AZURE_CONTAINER_REGISTRY_URL"`
+* `travis encrypt --pro AZURE_APP_ID="YOUR_AZURE_APP_OR_SERVICE_PRINCIPAL_ID"`
+* `travis encrypt --pro AZURE_SP_PSW="YOUR_AZURE_SP_SECRET_OR_PASSWORD"`
 
 Testing the application
 --
@@ -47,4 +46,4 @@ Available endpoints
 Links
 ---
 
-[Infrastructure](https://github.com/Hannarong98/PGR301-Exam-Infrastructure)
+[Infrastructure Azure](https://github.com/Hannarong98/pgr301-exam-azure-infrastructure)
