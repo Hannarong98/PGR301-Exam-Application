@@ -45,5 +45,6 @@ Available endpoints
 
 Links
 ---
+[Deployed here](https://pgr301exam.azurewebsites.net/)
 
 [Infrastructure Azure](https://github.com/Hannarong98/pgr301-exam-azure-infrastructure)
