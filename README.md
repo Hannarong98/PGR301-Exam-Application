@@ -21,6 +21,12 @@ Metrics
 ---
 * All measurements are done in controller classes with micrometer
 * And these can be found under `controller` package
+* How see them
+    * Start influxdb then navigate to `localhost:8083`
+    * Change database to `mydb`
+    * Play around with endpoints
+    * Do `SHOW MEASUREMENTS` and see if measurements are there
+    * Query for example `SELECT * FROM long_running_task` or anything that were used
 
 
 Available endpoints
