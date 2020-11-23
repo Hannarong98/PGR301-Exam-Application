@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping(path = ["/"])
 class HomeController {
     @GetMapping
-    fun home() : ResponseEntity<WrappedResponse<Void>> {
-        return RestResponseFactory.noPayload(200)
+    fun home() : ResponseEntity<WrappedResponse<String>> {
+        return RestResponseFactory.payload(200, "Hello from GCP!")
     }
 }
