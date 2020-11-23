@@ -50,6 +50,11 @@ Available endpoints
 
 ##### NOTE: Post requests accepts JSON as MediaType
 
+Deployment
+---
+* Once you have configured everything you will only need to change
+    * `image` in container block of `main.tf` for each new revision
+
 Links
 ---
 
